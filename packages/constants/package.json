@@ -1,0 +1,7 @@
+{
+	"name": "@amzl/constants",
+	"version": "1.0.0",
+	"description": "Constants for the app.",
+	"author": "Jack Wright",
+	"license": "ISC"
+}

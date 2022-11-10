@@ -1,0 +1,17 @@
+{
+	"name": "@amzl/utils",
+	"version": "1.0.0",
+	"description": "",
+	"author": "Jack Wright",
+	"license": "ISC",
+	"dependencies": {
+		"@amzl/config-ts": "*",
+		"@amzl/constants": "*",
+		"@types/bcryptjs": "^2.4.2",
+		"@types/jsonwebtoken": "^8.5.9",
+		"bcryptjs": "^2.4.3",
+		"dotenv": "^16.0.2",
+		"jsonwebtoken": "^8.5.1",
+		"zod-formik-adapter": "^1.1.1"
+	}
+}

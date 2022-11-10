@@ -1,0 +1,20 @@
+{
+	"name": "@amzl/project",
+	"private": true,
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"dev": "turbo run dev --parallel",
+		"build": "turbo run build --parallel"
+	},
+	"keywords": [],
+	"workspaces": [
+		"packages/*",
+		"apps/*"
+	],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"turbo": "^1.6.3"
+	}
+}
