@@ -1,0 +1,11 @@
+{
+	"name": "@amzl/validation",
+	"version": "1.0.0",
+	"description": "Validation schemas for the frontend and backend.",
+	"author": "Jack Wright",
+	"license": "ISC",
+	"dependencies": {
+		"zod": "^3.19.1",
+		"zod-formik-adapter": "^1.1.1"
+	}
+}

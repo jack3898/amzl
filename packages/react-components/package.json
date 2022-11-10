@@ -1,0 +1,23 @@
+{
+	"name": "@amzl/react-components",
+	"version": "1.0.0",
+	"description": "",
+	"author": "Jack Wright",
+	"license": "ISC",
+	"devDependencies": {
+		"ts-node": "^10.9.1"
+	},
+	"peerDependencies": {
+		"@fortawesome/fontawesome-svg-core": "^6.2.0",
+		"@fortawesome/free-solid-svg-icons": "^6.2.0",
+		"@fortawesome/react-fontawesome": "^0.2.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-router-dom": "^6.4.0"
+	},
+	"dependencies": {
+		"@amzl/config-ts": "*",
+		"@amzl/utils": "*",
+		"react-markdown": "^8.0.3"
+	}
+}

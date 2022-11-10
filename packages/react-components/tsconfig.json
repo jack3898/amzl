@@ -1,0 +1,6 @@
+{
+	"extends": "@amzl/config-ts/tsconfig.base.json",
+	"compilerOptions": {
+		"jsx": "react-jsx"
+	}
+}
