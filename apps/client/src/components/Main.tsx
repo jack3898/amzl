@@ -94,7 +94,7 @@ export function Main() {
 				/>
 				<hr />
 				<Input
-					label="I declare etc..."
+					label="I confirm the images taken of the vehicle represent the true condition and I will be held accountable for any damages that are not captured in the images taken during this inspection"
 					type="checkbox"
 					{...getFieldProps('declaration')}
 					error={errors.declaration ? 'required' : ''}
