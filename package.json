@@ -5,7 +5,10 @@
 	"description": "",
 	"scripts": {
 		"dev": "turbo run dev --parallel",
-		"build": "turbo run build --parallel"
+		"build": "turbo run build --parallel",
+		"generate": "turbo run generate",
+		"postinstall": "yarn run generate",
+		"devtools": "turbo run devtools"
 	},
 	"keywords": [],
 	"workspaces": [

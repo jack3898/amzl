@@ -1,0 +1,14 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../app.db"
+}
+
+model Drivers {
+  id          String   @id @default(uuid())
+  badgeId     String   @unique
+  submittedAt DateTime
+}

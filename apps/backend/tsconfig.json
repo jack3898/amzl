@@ -1,0 +1,3 @@
+{
+	"extends": "@amzl/config-ts/tsconfig.base.json"
+}

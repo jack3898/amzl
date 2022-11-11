@@ -1,13 +1,11 @@
 import { ROOT } from '@amzl/constants/node';
-import { rootenv } from '@amzl/utils/node/rootenv';
+import { nodeEnv } from '@amzl/utils/node/rootenv';
 import path from 'path';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import { Configuration as WebpackConfig } from 'webpack';
 
-rootenv();
-
 const webpackConfig: WebpackConfig = {
-	mode: process.env.NODE_ENV as any,
+	mode: nodeEnv,
 	devtool: 'source-map',
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],

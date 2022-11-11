@@ -1,10 +1,9 @@
 {
 	"pipeline": {
-		"dev": {
-			"cache": false
-		},
-		"build": {
-			"cache": false
-		}
+		"dev": { "cache": false },
+		"build": { "cache": false },
+		"service": { "cache": false },
+		"devtools": { "cache": false },
+		"generate": { "cache": false }
 	}
 }
