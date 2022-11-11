@@ -1,5 +1,5 @@
-import { formRouter } from './procedures/form';
-import { trpc } from './trpcInit';
+import { formRouter } from './src/procedures/form';
+import { trpc } from './src/trpcInit';
 
 export const trpcRouter = trpc.router({
 	form: formRouter

@@ -1,4 +1,4 @@
-import { toBase64 } from '@amzl/utils/client';
+import { toBase64 } from '@amzl/utils/client/toBase64';
 
 type FormProps = {
 	children: React.ReactNode;

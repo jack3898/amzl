@@ -6,3 +6,4 @@ app.db
 
 # Use yarn
 package-lock.json
+yarn-error.log

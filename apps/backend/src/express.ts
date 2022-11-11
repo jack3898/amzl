@@ -2,8 +2,8 @@ import { client } from '@amzl/utils/node/rootenv';
 import * as trpcExpress from '@trpc/server/adapters/express';
 import cors from 'cors';
 import express from 'express';
+import { trpcRouter } from '../trpcRouter';
 import { createContext } from './trpcInit';
-import { trpcRouter } from './trpcRouter';
 
 export default function server() {
 	const app = express();

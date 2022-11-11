@@ -1,4 +1,4 @@
-import { Button, File, Form, Input } from '@amzl/react-components/Form';
+import { Button, File, Form, Input } from '@amzl/react-components';
 import { formikValidationSchema } from '@amzl/validation/form';
 import { useFormik } from 'formik';
 

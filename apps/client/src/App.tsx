@@ -1,4 +1,5 @@
 import { Footer, Header, Main } from './components';
+import { QueryTest } from './components/QueryTest';
 
 export function App() {
 	return (
@@ -6,6 +7,7 @@ export function App() {
 			<Header />
 			<Main />
 			<Footer />
+			<QueryTest />
 		</div>
 	);
 }
