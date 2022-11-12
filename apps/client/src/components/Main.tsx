@@ -1,9 +1,10 @@
 import { Button, File, Form, Input } from '@amzl/react-components';
 import { formikValidationSchema } from '@amzl/validation/form';
 import { useFormik } from 'formik';
+import { PreviewImg } from './PreviewImg';
 
 export function Main() {
-	const { getFieldProps, handleSubmit, setFieldValue, errors } = useFormik({
+	const { getFieldProps, handleSubmit, setFieldValue, values, errors } = useFormik({
 		initialValues: {
 			firstname: '',
 			lastname: '',
@@ -29,7 +30,13 @@ export function Main() {
 				className="max-w-xl w-full mx-auto bg-white p-4 border rounded shadow"
 				onSubmit={handleSubmit}
 			>
-				<p>All fields are required</p>
+				<p>All fields are required.</p>
+				<p>
+					<strong>
+						You may only send ONE submission every 6 hours, so please double check your
+						information before you send it.
+					</strong>
+				</p>
 				<hr />
 				<Input
 					label="First name"
@@ -65,6 +72,7 @@ export function Main() {
 					}}
 					error={errors.picfront}
 				/>
+				<PreviewImg src={values.picfront} caption="Front" />
 				<File
 					label="Driver side"
 					type="file"
@@ -74,6 +82,7 @@ export function Main() {
 					allowedFiles={allowedFileTypes}
 					error={errors.picdriver}
 				/>
+				<PreviewImg src={values.picdriver} caption="Driver" />
 				<File
 					label="Passenger side"
 					type="file"
@@ -83,6 +92,7 @@ export function Main() {
 					}}
 					error={errors.picpassenger}
 				/>
+				<PreviewImg src={values.picpassenger} caption="Passenger" />
 				<File
 					label="Back"
 					type="file"
@@ -92,6 +102,7 @@ export function Main() {
 					allowedFiles={allowedFileTypes}
 					error={errors.picback}
 				/>
+				<PreviewImg src={values.picback} caption="Back" />
 				<hr />
 				<Input
 					label="I confirm the images taken of the vehicle represent the true condition and I will be held accountable for any damages that are not captured in the images taken during this inspection"
