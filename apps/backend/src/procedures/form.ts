@@ -1,5 +1,9 @@
+import { emailFrom, emailTo } from '@amzl/utils/client/rootenv';
+import { sendgrid } from '@amzl/utils/node/sendgrid';
 import { validationSchema } from '@amzl/validation/form';
 import { TRPCError } from '@trpc/server';
+import { format } from 'date-fns';
+import sharp from 'sharp';
 import { procedure, trpc } from '../trpcInit';
 
 export const formRouter = trpc.router({
@@ -21,6 +25,35 @@ export const formRouter = trpc.router({
 				message: 'A submission has already been recorded in the last 6 hours.'
 			});
 		}
+
+		const imageProcessing = [
+			{ name: 'picfront', base64: input.picfront },
+			{ name: 'picdriver', base64: input.picdriver },
+			{ name: 'picpassenger', base64: input.picpassenger },
+			{ name: 'picback', base64: input.picback }
+		].map(async ({ name, base64: base64Url }) => {
+			const base64 = base64Url.split(';base64,').pop();
+			const buffer = await sharp(Buffer.from(base64!, 'base64'))
+				.jpeg({ quality: 50 })
+				.toBuffer();
+
+			return { name, processedBase64: buffer.toString('base64') };
+		});
+
+		const processedImages = await Promise.all(imageProcessing);
+
+		await sendgrid.send({
+			to: emailTo,
+			from: emailFrom,
+			subject: `${driver.badgeId} - ${format(now, 'dd/MM/yyyy HH:mm')}`,
+			text: `New vehicle pictures for driver ${input.firstname} ${input.lastname} (badge: ${driver.badgeId}, reg: ${input.reg}). Check attached.`,
+			attachments: processedImages.map(({ name, processedBase64 }) => ({
+				filename: name,
+				content: processedBase64,
+				type: 'image/jpeg',
+				disposition: 'attachment'
+			}))
+		});
 
 		await ctx.db.drivers.update({
 			where: { badgeId: input.badgeid },

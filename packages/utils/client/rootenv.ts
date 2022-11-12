@@ -4,3 +4,6 @@
 export const server = new URL(process.env.SERVER!);
 export const client = new URL(process.env.CLIENT!);
 export const nodeEnv = process.env.NODE_ENV! as 'development' | 'production';
+export const sendgridKey = process.env.SENDGRID_KEY!;
+export const emailFrom = process.env.EMAIL_FROM!;
+export const emailTo = process.env.EMAIL_TO!;

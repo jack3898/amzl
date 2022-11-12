@@ -6,25 +6,24 @@ import { PreviewImg } from './PreviewImg';
 export function Main() {
 	const formMutation = trpcContext.form.submit.useMutation();
 
-	const { getFieldProps, handleSubmit, setFieldValue, values, errors, isValid, resetForm } =
-		useFormik({
-			initialValues: {
-				firstname: '',
-				lastname: '',
-				reg: '',
-				badgeid: '',
-				picfront: '',
-				picdriver: '',
-				picpassenger: '',
-				picback: '',
-				declaration: false
-			},
-			onSubmit(values) {
-				return formMutation.mutateAsync({ ...values, declaration: true });
-			},
-			validationSchema: formikValidationSchema,
-			validateOnMount: true
-		});
+	const { getFieldProps, handleSubmit, setFieldValue, values, errors, isValid } = useFormik({
+		initialValues: {
+			firstname: '',
+			lastname: '',
+			reg: '',
+			badgeid: '',
+			picfront: '',
+			picdriver: '',
+			picpassenger: '',
+			picback: '',
+			declaration: false
+		},
+		onSubmit(values) {
+			return formMutation.mutateAsync({ ...values, declaration: true });
+		},
+		validationSchema: formikValidationSchema,
+		validateOnMount: true
+	});
 
 	const allowedFileTypes = ['.png', '.jpg', '.jpeg'];
 
@@ -110,7 +109,11 @@ export function Main() {
 					error={errors.declaration ? 'required' : ''}
 				/>
 				<div>
-					<Button text="Send" type="submit" disabled={!isValid} />
+					<Button
+						text={formMutation.isLoading ? 'Sending...' : 'Send'}
+						type="submit"
+						disabled={!isValid || formMutation.isLoading}
+					/>
 					{formMutation.failureReason && (
 						<p className="text-red-400">{formMutation.failureReason?.message}</p>
 					)}
