@@ -1,29 +1,32 @@
-import { Button, File, Form, Input } from '@amzl/react-components';
+import { Button, File, Form, Input, trpcContext } from '@amzl/react-components';
 import { formikValidationSchema } from '@amzl/validation/form';
 import { useFormik } from 'formik';
 import { PreviewImg } from './PreviewImg';
 
 export function Main() {
-	const { getFieldProps, handleSubmit, setFieldValue, values, errors, isValid } = useFormik({
-		initialValues: {
-			firstname: '',
-			lastname: '',
-			reg: '',
-			badgeid: '',
-			picfront: '',
-			picdriver: '',
-			picpassenger: '',
-			picback: '',
-			declaration: false
-		},
-		onSubmit(values) {
-			console.log(values);
-		},
-		validationSchema: formikValidationSchema,
-		validateOnMount: true
-	});
+	const formMutation = trpcContext.form.submit.useMutation();
 
-	const allowedFileTypes: string[] = ['.png', '.jpg', '.jpeg'];
+	const { getFieldProps, handleSubmit, setFieldValue, values, errors, isValid, resetForm } =
+		useFormik({
+			initialValues: {
+				firstname: '',
+				lastname: '',
+				reg: '',
+				badgeid: '',
+				picfront: '',
+				picdriver: '',
+				picpassenger: '',
+				picback: '',
+				declaration: false
+			},
+			onSubmit(values) {
+				return formMutation.mutateAsync({ ...values, declaration: true });
+			},
+			validationSchema: formikValidationSchema,
+			validateOnMount: true
+		});
+
+	const allowedFileTypes = ['.png', '.jpg', '.jpeg'];
 
 	return (
 		<main>
@@ -31,7 +34,6 @@ export function Main() {
 				className="max-w-xl w-full mx-auto bg-white p-4 border rounded shadow"
 				onSubmit={handleSubmit}
 			>
-				<p>All fields are required.</p>
 				<p>
 					<strong>
 						You may only send ONE submission every 6 hours, so please double check your
@@ -66,7 +68,6 @@ export function Main() {
 				<hr />
 				<File
 					label="Front"
-					type="file"
 					allowedFiles={allowedFileTypes}
 					base64Output={async (base64) => {
 						setFieldValue('picfront', base64);
@@ -76,7 +77,6 @@ export function Main() {
 				<PreviewImg src={values.picfront} caption="Front" />
 				<File
 					label="Driver side"
-					type="file"
 					base64Output={async (base64) => {
 						setFieldValue('picdriver', base64);
 					}}
@@ -86,7 +86,6 @@ export function Main() {
 				<PreviewImg src={values.picdriver} caption="Driver" />
 				<File
 					label="Passenger side"
-					type="file"
 					allowedFiles={allowedFileTypes}
 					base64Output={async (base64) => {
 						setFieldValue('picpassenger', base64);
@@ -96,7 +95,6 @@ export function Main() {
 				<PreviewImg src={values.picpassenger} caption="Passenger" />
 				<File
 					label="Back"
-					type="file"
 					base64Output={async (base64) => {
 						setFieldValue('picback', base64);
 					}}
@@ -113,6 +111,10 @@ export function Main() {
 				/>
 				<div>
 					<Button text="Send" type="submit" disabled={!isValid} />
+					{formMutation.failureReason && (
+						<p className="text-red-400">{formMutation.failureReason?.message}</p>
+					)}
+					{formMutation.isSuccess && <p className="text-green-400">Success!</p>}
 				</div>
 			</Form>
 		</main>

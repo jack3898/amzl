@@ -35,7 +35,7 @@ type FileProps = {
 	allowedFiles?: string[];
 	error?: string;
 	base64Output?: (result: string) => void;
-} & React.ComponentProps<'input'>;
+} & Omit<React.ComponentProps<'input'>, 'type'>;
 
 export function File({ label, allowedFiles = [], error, base64Output, ...rest }: FileProps) {
 	return (
