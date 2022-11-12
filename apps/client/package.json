@@ -20,7 +20,6 @@
 		"@fortawesome/react-fontawesome": "^0.2.0",
 		"@types/react-dom": "^18.0.6",
 		"date-fns": "^2.29.3",
-		"dotenv-webpack": "^8.0.1",
 		"formik": "^2.2.9",
 		"html-webpack-plugin": "^5.5.0",
 		"react": "^18.2.0",

@@ -1,6 +1,5 @@
-import { bundler, errorHandler } from '@amzl/config-webpack';
+import { bundler, errorHandler, webpackConfig } from '@amzl/config-webpack';
 import { ROOT } from '@amzl/constants/node';
-import Dotenv from 'dotenv-webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 
@@ -10,8 +9,8 @@ export const webpackClientConfig: Parameters<typeof bundler>[0] = {
 		filename: 'bundle.js'
 	},
 	plugins: [
-		new HtmlWebpackPlugin({ template: path.resolve('src', 'index.html') }),
-		new Dotenv({ systemvars: true, path: path.resolve(ROOT, '.env') })
+		...(webpackConfig.plugins || []),
+		new HtmlWebpackPlugin({ template: path.resolve('src', 'index.html') })
 	]
 };
 

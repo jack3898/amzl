@@ -1,7 +1,7 @@
 import { Configuration as WebpackConfig, Stats, webpack } from 'webpack';
 import devServer, { Configuration as DevServerConfig } from 'webpack-dev-server';
-import devServerConfig from './src/devserver.config';
-import webpackConfig from './src/webpack.config';
+import { devServerConfig } from './src/devserver.config';
+import { webpackConfig } from './src/webpack.config';
 
 /**
  * Run a webpack bundle without the dev server. Used for deployment and pipelines.
@@ -43,3 +43,6 @@ export const errorHandler: Parameters<ReturnType<typeof bundler>['run']>[0] = (
 		console.warn(info?.warnings);
 	}
 };
+
+export * from './src/devserver.config';
+export * from './src/webpack.config';

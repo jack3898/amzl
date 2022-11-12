@@ -4,7 +4,7 @@ import Dotenv from 'dotenv-webpack';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import { Configuration as WebpackConfig } from 'webpack';
 
-const webpackConfig: WebpackConfig = {
+export const webpackConfig: WebpackConfig = {
 	mode: nodeEnv,
 	devtool: 'source-map',
 	plugins: [new Dotenv({ path: ROOT_ENV_PATH })],
@@ -50,5 +50,3 @@ const webpackConfig: WebpackConfig = {
 		]
 	}
 };
-
-export default webpackConfig;
