@@ -13,7 +13,7 @@ export const formRouter = trpc.router({
 		});
 
 		if (!driver) {
-			throw new TRPCError({ code: 'FORBIDDEN', message: 'Badge ID not found.' });
+			throw new TRPCError({ code: 'FORBIDDEN', message: 'Badge ID not found' });
 		}
 
 		const now = new Date();
@@ -22,7 +22,7 @@ export const formRouter = trpc.router({
 		if (now.getTime() < allowedAt) {
 			throw new TRPCError({
 				code: 'BAD_REQUEST',
-				message: 'A submission has already been recorded in the last 6 hours.'
+				message: 'A submission has already been recorded in the last 6 hours'
 			});
 		}
 

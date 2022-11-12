@@ -1,11 +1,12 @@
 {
-	"name": "@amzl/backend",
+	"name": "@amzl/server",
 	"version": "1.0.0",
 	"description": "Backend application.",
 	"main": "src/index.ts",
 	"scripts": {
-		"dev": "nodemon src/index.ts",
-		"service": "ts-node src/index.ts",
+		"dev": "nodemon src/devserver.ts",
+		"service": "ts-node src/distserver.ts",
+		"stop": "pm2 stop all",
 		"devtools": "prisma studio",
 		"generate": "prisma generate && prisma db push"
 	},
@@ -21,6 +22,7 @@
 		"cors": "^2.8.5",
 		"date-fns": "^2.29.3",
 		"express": "^4.18.2",
+		"pm2": "^5.2.2",
 		"sharp": "^0.31.2",
 		"ts-node": "^10.9.1"
 	},

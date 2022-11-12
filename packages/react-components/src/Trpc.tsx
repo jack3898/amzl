@@ -1,4 +1,4 @@
-import { TRPCRouter } from '@amzl/backend/trpcRouter';
+import { TRPCRouter } from '@amzl/server/trpcRouter';
 import { server } from '@amzl/utils/client/rootenv';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createTRPCReact, httpBatchLink } from '@trpc/react-query';

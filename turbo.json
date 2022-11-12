@@ -4,6 +4,7 @@
 		"build": { "cache": false },
 		"service": { "cache": false },
 		"devtools": { "cache": false },
-		"generate": { "cache": false }
+		"generate": { "cache": false },
+		"stop": { "cache": false }
 	}
 }
