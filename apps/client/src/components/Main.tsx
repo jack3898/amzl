@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { PreviewImg } from './PreviewImg';
 
 export function Main() {
-	const { getFieldProps, handleSubmit, setFieldValue, values, errors } = useFormik({
+	const { getFieldProps, handleSubmit, setFieldValue, values, errors, isValid } = useFormik({
 		initialValues: {
 			firstname: '',
 			lastname: '',
@@ -19,7 +19,8 @@ export function Main() {
 		onSubmit(values) {
 			console.log(values);
 		},
-		validationSchema: formikValidationSchema
+		validationSchema: formikValidationSchema,
+		validateOnMount: true
 	});
 
 	const allowedFileTypes: string[] = ['.png', '.jpg', '.jpeg'];
@@ -111,7 +112,7 @@ export function Main() {
 					error={errors.declaration ? 'required' : ''}
 				/>
 				<div>
-					<Button text="Send" type="submit" />
+					<Button text="Send" type="submit" disabled={!isValid} />
 				</div>
 			</Form>
 		</main>

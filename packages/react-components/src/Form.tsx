@@ -70,7 +70,12 @@ type ButtonProps = {
 
 export function Button({ text, ...rest }: ButtonProps) {
 	return (
-		<button {...rest} className="bg-slate-600 px-3 py-2 text-white rounded">
+		<button
+			{...rest}
+			className={`bg-slate-600 px-3 py-2 text-white rounded ${
+				rest.disabled ? 'cursor-not-allowed opacity-75' : ''
+			}`}
+		>
 			{text}
 		</button>
 	);
