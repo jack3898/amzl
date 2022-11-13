@@ -1,13 +1,14 @@
-import { emailFrom, emailTo } from '@amzl/utils/client/rootenv';
+import { adminPass, emailFrom, emailTo } from '@amzl/utils/client/rootenv';
 import { sendgrid } from '@amzl/utils/node/sendgrid';
-import { validationSchema } from '@amzl/validation/form';
+import { formValidationSchema } from '@amzl/validation/form';
+import { newValidationSchema } from '@amzl/validation/new';
 import { TRPCError } from '@trpc/server';
 import { format } from 'date-fns';
 import sharp from 'sharp';
 import { procedure, trpc } from '../trpcInit';
 
 export const formRouter = trpc.router({
-	submit: procedure.input(validationSchema).mutation(async ({ ctx, input }) => {
+	submit: procedure.input(formValidationSchema).mutation(async ({ ctx, input }) => {
 		const driver = await ctx.db.drivers.findFirst({
 			where: { badgeId: input.badgeid }
 		});
@@ -58,6 +59,17 @@ export const formRouter = trpc.router({
 		await ctx.db.drivers.update({
 			where: { badgeId: input.badgeid },
 			data: { submittedAt: now }
+		});
+	}),
+	new: procedure.input(newValidationSchema).mutation(async ({ ctx, input }) => {
+		if (input.password !== adminPass) {
+			throw new TRPCError({ code: 'UNAUTHORIZED' });
+		}
+
+		await ctx.db.drivers.upsert({
+			where: { badgeId: input.newbadgeid },
+			update: { badgeId: input.newbadgeid, submittedAt: new Date(0) },
+			create: { badgeId: input.newbadgeid, submittedAt: new Date(0) }
 		});
 	})
 });

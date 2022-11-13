@@ -7,3 +7,4 @@ export const nodeEnv = process.env.NODE_ENV! as 'development' | 'production';
 export const sendgridKey = process.env.SENDGRID_KEY!;
 export const emailFrom = process.env.EMAIL_FROM!;
 export const emailTo = process.env.EMAIL_TO!;
+export const adminPass = process.env.ADMIN_PASS!;

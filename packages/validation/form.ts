@@ -5,7 +5,7 @@ const maxMb = 8;
 const fileSize = maxMb * 1000 * 1000 * 1.37; // rough estimate
 const fileTooBigMsg = `File too large (max ${maxMb}mb)`;
 
-export const validationSchema = z.object({
+export const formValidationSchema = z.object({
 	firstname: z.string(),
 	lastname: z.string(),
 	reg: z.string(),
@@ -17,4 +17,4 @@ export const validationSchema = z.object({
 	declaration: z.literal(true)
 });
 
-export const formikValidationSchema = toFormikValidationSchema(validationSchema);
+export const formFormikValidationSchema = toFormikValidationSchema(formValidationSchema);
