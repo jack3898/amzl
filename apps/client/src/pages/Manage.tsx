@@ -1,5 +1,5 @@
 import { Button, Form, Input, trpcContext } from '@amzl/react-components';
-import { newFormikValidationSchema } from '@amzl/validation/new';
+import { manageFormikValidationSchema } from '@amzl/validation/manage';
 import { useFormik } from 'formik';
 import { Main } from '../components';
 
@@ -8,13 +8,13 @@ export default function Manage() {
 
 	const { getFieldProps, handleSubmit, errors, isValid } = useFormik({
 		initialValues: {
-			newbadgeid: '',
+			badgeid: '',
 			password: ''
 		},
 		onSubmit(input) {
 			return newMutation.mutateAsync(input);
 		},
-		validationSchema: newFormikValidationSchema,
+		validationSchema: manageFormikValidationSchema,
 		validateOnMount: true
 	});
 
@@ -34,8 +34,8 @@ export default function Manage() {
 				<Input
 					label="Badge ID"
 					type="text"
-					{...getFieldProps('newbadgeid')}
-					error={errors.newbadgeid}
+					{...getFieldProps('badgeid')}
+					error={errors.badgeid}
 				/>
 				<Input
 					label="Password"
