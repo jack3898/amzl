@@ -1,4 +1,7 @@
 import { toBase64 } from '@amzl/utils/client/toBase64';
+import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRef } from 'react';
 
 type FormProps = {
 	children: React.ReactNode;
@@ -38,41 +41,58 @@ type FileProps = {
 } & Omit<React.ComponentProps<'input'>, 'type'>;
 
 export function File({ label, allowedFiles = [], error, base64Output, ...rest }: FileProps) {
+	const ref = useRef<HTMLInputElement>(null);
+	const id = `file-${label}`;
+
 	return (
-		<Input
-			label={label}
-			error={error}
-			type="file"
-			accept={allowedFiles.join(',')}
-			onChange={async (...event) => {
-				rest.onChange?.(...event); // reimplement
+		<>
+			<label>
+				{label}{' '}
+				{error && (
+					<small className="text-red-400 lowercase italic font-bold">{error}</small>
+				)}
+				<br />
+				<Button
+					type="button"
+					onClick={() => ref.current?.click()}
+					text={<FontAwesomeIcon icon={faUpload} />}
+				/>
+			</label>
+			<input
+				{...rest}
+				ref={ref}
+				type="file"
+				className="hidden"
+				id={id}
+				onChange={async (...event) => {
+					rest.onChange?.(...event); // reimplement
 
-				if (!base64Output) return;
+					if (!base64Output) return;
 
-				const [eventArg1] = event;
-				const file = eventArg1.currentTarget.files?.[0];
+					const [eventArg1] = event;
+					const file = eventArg1.currentTarget.files?.[0];
 
-				if (!file) {
-					return void base64Output('');
-				}
+					if (!file) {
+						return void base64Output('');
+					}
 
-				const base64File = await toBase64(file);
-				base64Output(base64File);
-			}}
-			{...rest}
-		/>
+					const base64File = await toBase64(file);
+					base64Output(base64File);
+				}}
+			/>
+		</>
 	);
 }
 
 type ButtonProps = {
-	text: string;
+	text: React.ReactNode;
 } & React.ComponentProps<'button'>;
 
 export function Button({ text, ...rest }: ButtonProps) {
 	return (
 		<button
 			{...rest}
-			className={`bg-slate-600 px-3 py-2 text-white rounded ${
+			className={`bg-zinc-500 px-3 py-2 text-white rounded ${
 				rest.disabled ? 'cursor-not-allowed opacity-75' : ''
 			}`}
 		>
