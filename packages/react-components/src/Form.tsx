@@ -54,32 +54,34 @@ export function File({ label, allowedFiles = [], error, base64Output, ...rest }:
 				<br />
 				<Button
 					type="button"
+					title="Upload a file"
 					onClick={() => ref.current?.click()}
 					text={<FontAwesomeIcon icon={faUpload} />}
 				/>
+				<input
+					{...rest}
+					ref={ref}
+					type="file"
+					className="hidden"
+					accept={allowedFiles.join(',')}
+					id={id}
+					onChange={async (...event) => {
+						rest.onChange?.(...event); // reimplement
+
+						if (!base64Output) return;
+
+						const [eventArg1] = event;
+						const file = eventArg1.currentTarget.files?.[0];
+
+						if (!file) {
+							return void base64Output('');
+						}
+
+						const base64File = await toBase64(file);
+						base64Output(base64File);
+					}}
+				/>
 			</label>
-			<input
-				{...rest}
-				ref={ref}
-				type="file"
-				className="hidden"
-				id={id}
-				onChange={async (...event) => {
-					rest.onChange?.(...event); // reimplement
-
-					if (!base64Output) return;
-
-					const [eventArg1] = event;
-					const file = eventArg1.currentTarget.files?.[0];
-
-					if (!file) {
-						return void base64Output('');
-					}
-
-					const base64File = await toBase64(file);
-					base64Output(base64File);
-				}}
-			/>
 		</>
 	);
 }
