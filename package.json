@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "turbo run dev --parallel",
 		"build": "turbo run build --parallel",
-		"dist": "yarn run build && turbo run service",
+		"dist": "turbo run service",
+		"dist:build": "yarn run build && turbo run service",
 		"generate": "turbo run generate",
 		"postinstall": "yarn run generate",
 		"devtools": "turbo run devtools",

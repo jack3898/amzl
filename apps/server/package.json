@@ -5,7 +5,8 @@
 	"main": "src/index.ts",
 	"scripts": {
 		"dev": "nodemon src/devserver.ts",
-		"service": "ts-node src/distserver.ts",
+		"build": "ts-node app.build.ts",
+		"service": "pm2 start dist/bundle.js | pm2 logs",
 		"stop": "pm2 stop all",
 		"devtools": "prisma studio",
 		"generate": "prisma generate && prisma db push"
@@ -14,6 +15,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@amzl/config-ts": "*",
+		"@amzl/config-webpack": "*",
 		"@amzl/utils": "*",
 		"@amzl/validation": "*",
 		"@prisma/client": "^4.6.1",

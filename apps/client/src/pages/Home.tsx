@@ -1,7 +1,7 @@
 import { Button, File, Form, Input, trpcContext } from '@amzl/react-components';
 import { formFormikValidationSchema } from '@amzl/validation/form';
 import { useFormik } from 'formik';
-import { Main } from 'src/components';
+import { Main } from '../components';
 import { PreviewImg } from '../components/PreviewImg';
 
 export default function Home() {

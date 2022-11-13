@@ -1,7 +1,7 @@
 import { Button, Form, Input, trpcContext } from '@amzl/react-components';
 import { newFormikValidationSchema } from '@amzl/validation/new';
 import { useFormik } from 'formik';
-import { Main } from 'src/components';
+import { Main } from '../components';
 
 export default function Manage() {
 	const newMutation = trpcContext.form.new.useMutation();
