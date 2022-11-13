@@ -7,7 +7,7 @@ const Manage = lazy(() => import('./pages/Manage'));
 
 export function App() {
 	return (
-		<div className="grid gap-8 p-4">
+		<div className="flex flex-col gap-8 p-4 min-h-screen">
 			<Header />
 			<BrowserRouter>
 				<Routes>
