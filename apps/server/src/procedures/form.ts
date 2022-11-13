@@ -42,14 +42,15 @@ export const formRouter = trpc.router({
 		});
 
 		const processedImages = await Promise.all(imageProcessing);
+		const nowReadable = format(now, 'dd/MM/yyyy HH:mm');
 
 		await sendgrid.send({
 			to: emailTo,
 			from: emailFrom,
-			subject: `${driver.badgeId} - ${format(now, 'dd/MM/yyyy HH:mm')}`,
+			subject: `${nowReadable} new vehicle photos - (${driver.badgeId}, ${input.reg})`,
 			text: `New vehicle pictures for driver ${input.firstname} ${input.lastname} (badge: ${driver.badgeId}, reg: ${input.reg}). Check attached.`,
 			attachments: processedImages.map(({ name, processedBase64 }) => ({
-				filename: name,
+				filename: `${name} ${nowReadable}`,
 				content: processedBase64,
 				type: 'image/jpeg',
 				disposition: 'attachment'
