@@ -9,7 +9,7 @@
 		"dist": "turbo run service",
 		"dist:build": "yarn run build && turbo run service",
 		"generate": "turbo run generate",
-		"postinstall": "yarn run generate",
+		"postinstall": "yarn run generate && yarn run build",
 		"devtools": "turbo run devtools",
 		"stop": "turbo run stop"
 	},
