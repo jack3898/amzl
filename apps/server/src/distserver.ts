@@ -1,11 +1,11 @@
 import { CLIENT_BUILD_PATH } from '@amzl/constants/node';
-import { server } from '@amzl/utils/node/rootenv';
+import { origin, server } from '@amzl/utils/node/rootenv';
 import * as express from 'express';
 import path from 'path';
 import expressInit from './express';
 
 const app = expressInit({
-	corsOrigin: server.origin
+	corsOrigin: origin.origin
 });
 
 app.use(express.static(CLIENT_BUILD_PATH));
