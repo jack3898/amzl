@@ -8,6 +8,8 @@ import path from 'path';
  * This will bundle and compile all packages to a single js file for pm2 to use.
  */
 
+const isLocal = /^(@amzl|\.\/|\.\.)/;
+
 export const webpackBackendConfig: Parameters<typeof bundler>[0] = {
 	entry: './src/distserver.ts',
 	output: {
@@ -18,10 +20,18 @@ export const webpackBackendConfig: Parameters<typeof bundler>[0] = {
 	externalsPresets: {
 		node: true
 	},
-	externals: {
-		sharp: 'commonjs sharp',
-		'@prisma/client': 'commonjs @prisma/client'
-	},
+	externals: [
+		({ request: moduleName = '' }, callback) => {
+			// "If the package is local, bundle it."
+			if (isLocal.test(moduleName)) {
+				console.log(`📦 ${moduleName} (bundled)`);
+				return callback();
+			}
+
+			console.log(`👽 ${moduleName} (external)`);
+			callback(undefined, `commonjs ${moduleName}`);
+		}
+	],
 	module: {
 		rules: [
 			{
@@ -34,7 +44,13 @@ export const webpackBackendConfig: Parameters<typeof bundler>[0] = {
 				]
 			}
 		]
-	}
+	},
+	ignoreWarnings: [
+		{
+			// Because of await import()
+			message: /the request of a dependency is an expression/
+		}
+	]
 };
 
 bundler(webpackBackendConfig).run(errorHandler);
