@@ -1,9 +1,5 @@
 node_modules
-.turbo
+.nx
 .env
 dist
 app.db
-
-# Use yarn
-package-lock.json
-yarn-error.log

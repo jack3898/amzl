@@ -15,6 +15,6 @@
 	"homepage": "https://github.com/jack3898/meal-ideas#readme",
 	"devDependencies": {
 		"@amzl/constants": "*",
-		"tailwindcss": "^3.0.24"
+		"tailwindcss": "^3.3.5"
 	}
 }
