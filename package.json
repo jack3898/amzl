@@ -6,8 +6,8 @@
 	"scripts": {
 		"dev": "nx run-many -t run dev",
 		"build": "nx run-many -t run build --output-style=stream",
-		"dist": "nx run-many -t run service",
-		"dist:build": "npm run build && nx run-many -t run service",
+		"dist": "nx run-many -t run service --output-style=stream",
+		"dist:build": "npm run build && nx run-many -t run service --output-style=stream",
 		"generate": "nx run-many -t run generate",
 		"postinstall": "npm run generate && npm run build",
 		"devtools": "nx run-many -t run devtools --output-style=stream",
