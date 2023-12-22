@@ -15,7 +15,9 @@ export default function Home() {
 			badgeid: '',
 			picfront: '',
 			picdriver: '',
+			picdriverFront: '',
 			picpassenger: '',
+			picpassengerFront: '',
 			picback: '',
 			declaration: false
 		},
@@ -75,6 +77,7 @@ export default function Home() {
 					error={errors.picfront}
 				/>
 				<PreviewImg src={values.picfront} caption="Front" />
+
 				<File
 					label="Driver side"
 					base64Output={async (base64) => {
@@ -84,6 +87,17 @@ export default function Home() {
 					error={errors.picdriver}
 				/>
 				<PreviewImg src={values.picdriver} caption="Driver" />
+
+				<File
+					label="Driver side (front)"
+					base64Output={async (base64) => {
+						setFieldValue('picdriverFront', base64);
+					}}
+					allowedFiles={allowedFileTypes}
+					error={errors.picdriverFront}
+				/>
+				<PreviewImg src={values.picdriverFront} caption="Driver" />
+
 				<File
 					label="Passenger side"
 					allowedFiles={allowedFileTypes}
@@ -93,6 +107,17 @@ export default function Home() {
 					error={errors.picpassenger}
 				/>
 				<PreviewImg src={values.picpassenger} caption="Passenger" />
+
+				<File
+					label="Passenger side (front)"
+					allowedFiles={allowedFileTypes}
+					base64Output={async (base64) => {
+						setFieldValue('picpassengerFront', base64);
+					}}
+					error={errors.picpassengerFront}
+				/>
+				<PreviewImg src={values.picpassengerFront} caption="Passenger" />
+
 				<File
 					label="Back"
 					base64Output={async (base64) => {

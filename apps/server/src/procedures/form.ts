@@ -31,7 +31,9 @@ export const formRouter = trpc.router({
 			{ name: 'picfront', base64: input.picfront },
 			{ name: 'picdriver', base64: input.picdriver },
 			{ name: 'picpassenger', base64: input.picpassenger },
-			{ name: 'picback', base64: input.picback }
+			{ name: 'picback', base64: input.picback },
+			{ name: 'picdriverFront', base64: input.picdriverFront },
+			{ name: 'picpassengerFront', base64: input.picpassengerFront }
 		].map(async ({ name, base64: base64Url }) => {
 			const base64 = base64Url.split(';base64,').pop();
 			const buffer = await sharp(Buffer.from(base64!, 'base64'))

@@ -14,7 +14,9 @@ export const formValidationSchema = z.object({
 	badgeid: z.string(),
 	picfront: z.string().max(fileSize, { message: fileTooBigMsg }),
 	picdriver: z.string().max(fileSize, { message: fileTooBigMsg }),
+	picdriverFront: z.string().max(fileSize, { message: fileTooBigMsg }),
 	picpassenger: z.string().max(fileSize, { message: fileTooBigMsg }),
+	picpassengerFront: z.string().max(fileSize, { message: fileTooBigMsg }),
 	picback: z.string().max(fileSize, { message: fileTooBigMsg }),
 	declaration: z.literal(true)
 });
