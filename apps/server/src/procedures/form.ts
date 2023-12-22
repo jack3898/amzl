@@ -18,12 +18,12 @@ export const formRouter = trpc.router({
 		}
 
 		const now = new Date();
-		const allowedAt = driver.submittedAt.getTime() + 2.16e7; // 6 hours in the future
+		const allowedAt = driver.submittedAt.getTime() + 1.44e+7; // 4 hours in the future
 
 		if (now.getTime() < allowedAt) {
 			throw new TRPCError({
 				code: 'BAD_REQUEST',
-				message: 'A submission has already been recorded in the last 6 hours'
+				message: 'A submission has already been recorded in the last 4 hours'
 			});
 		}
 

@@ -27,7 +27,7 @@ export default function Manage() {
 				<p>
 					<strong>
 						A new driver ID will be saved if one does not exist. If a driver does exist,
-						their 6 hour timer will be reset.
+						their 4 hour timer will be reset.
 					</strong>
 				</p>
 				<hr />

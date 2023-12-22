@@ -38,7 +38,7 @@ export default function Home() {
 			>
 				<p>
 					<strong>
-						You may only send ONE submission every 6 hours, so please double check your
+						You may only send ONE submission every 4 hours, so please double check your
 						information before you send it.
 					</strong>
 				</p>
