@@ -9,21 +9,21 @@
 		"@amzl/config-ts": "*",
 		"@amzl/utils": "*",
 		"@tanstack/react-query": "^4.29.5",
-		"@trpc/client": "^10.23.1",
+		"@trpc/client": "^10.43.6",
 		"@trpc/react-query": "^10.23.1",
-		"@trpc/server": "^10.23.1",
-		"react-markdown": "^8.0.7"
+		"@trpc/server": "^10.43.6",
+		"react-markdown": "^9.0.1"
 	},
 	"devDependencies": {
 		"@amzl/server": "*",
 		"ts-node": "^10.9.1"
 	},
 	"peerDependencies": {
-		"@fortawesome/fontawesome-svg-core": "^6.4.0",
-		"@fortawesome/free-solid-svg-icons": "^6.4.0",
+		"@fortawesome/fontawesome-svg-core": "^6.4.2",
+		"@fortawesome/free-solid-svg-icons": "^6.4.2",
 		"@fortawesome/react-fontawesome": "^0.2.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"react-router-dom": "^6.4.0"
+		"react-router-dom": "^6.19.0"
 	}
 }

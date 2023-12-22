@@ -4,14 +4,14 @@
 	"version": "1.0.0",
 	"description": "",
 	"scripts": {
-		"dev": "turbo run dev --parallel",
-		"build": "turbo run build --parallel",
-		"dist": "turbo run service",
-		"dist:build": "yarn run build && turbo run service",
-		"generate": "turbo run generate",
-		"postinstall": "yarn run generate && yarn run build",
-		"devtools": "turbo run devtools",
-		"stop": "turbo run stop"
+		"dev": "nx run-many -t run dev",
+		"build": "nx run-many -t run build --output-style=stream",
+		"dist": "nx run-many -t run service",
+		"dist:build": "npm run build && nx run-many -t run service",
+		"generate": "nx run-many -t run generate",
+		"postinstall": "npm run generate && npm run build",
+		"devtools": "nx run-many -t run devtools --output-style=stream",
+		"stop": "nx run-many -t run stop"
 	},
 	"keywords": [],
 	"workspaces": [
@@ -21,9 +21,9 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"turbo": "^1.6.3"
+		"nx": "^17.1.2"
 	},
 	"devDependencies": {
-		"typescript": "^5.0.4"
+		"typescript": "^5.2.2"
 	}
 }
