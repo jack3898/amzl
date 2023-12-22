@@ -96,7 +96,7 @@ export default function Home() {
 					allowedFiles={allowedFileTypes}
 					error={errors.picdriverFront}
 				/>
-				<PreviewImg src={values.picdriverFront} caption="Driver" />
+				<PreviewImg src={values.picdriverFront} caption="Driver (front)" />
 
 				<File
 					label="Passenger side"
@@ -116,7 +116,7 @@ export default function Home() {
 					}}
 					error={errors.picpassengerFront}
 				/>
-				<PreviewImg src={values.picpassengerFront} caption="Passenger" />
+				<PreviewImg src={values.picpassengerFront} caption="Passenger (front)" />
 
 				<File
 					label="Back"
